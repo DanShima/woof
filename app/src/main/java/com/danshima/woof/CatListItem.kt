@@ -1,6 +1,7 @@
 package com.danshima.woof
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -15,9 +16,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.danshima.woof.models.Cat
 
 @Composable
-fun CatListItem(cat: Cat) {
+fun CatListItem(cat: Cat, goToDetail:(Cat) -> Unit) {
     Card(
         modifier = Modifier
             .padding(horizontal = 8.dp, vertical = 8.dp)
@@ -26,7 +28,7 @@ fun CatListItem(cat: Cat) {
         backgroundColor = Color.LightGray,
         shape = RoundedCornerShape(corner = CornerSize(16.dp))
     ) {
-        Row() {
+        Row(Modifier.clickable { goToDetail(cat) }) {
             loadImage(cat = cat)
             Column(
                 modifier = Modifier

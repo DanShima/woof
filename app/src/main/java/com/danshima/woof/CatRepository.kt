@@ -1,5 +1,7 @@
 package com.danshima.woof
 
+import com.danshima.woof.models.Cat
+
 class CatRepository {
     val cats = listOf(
         Cat(1, "Nyan", "Momo's destroyer"),
