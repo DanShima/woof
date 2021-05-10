@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Woof</string>
+    <string name="cat_description">Description</string>
 </resources>

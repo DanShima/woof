@@ -76,6 +76,8 @@ private fun CatDescription(cat: Cat, height: Dp) {
     Column() {
         Spacer(modifier = Modifier.height(8.dp))
         CatName(cat = cat)
+        CatDetail(stringResource(id = R.string.cat_description), cat.description)
+        Spacer(Modifier.height((height - 320.dp).coerceAtLeast(0.dp)))
     }
 }
 
@@ -88,6 +90,22 @@ private fun CatName(cat: Cat) {
             style = MaterialTheme.typography.h5,
             fontWeight = FontWeight.Bold
         )
+    }
+}
+
+@Composable
+fun CatDetail(label: String, value: String, isLink: Boolean = false) {
+    Column(modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 16.dp)) {
+        Divider()
+        CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
+            Text(text = label, modifier = Modifier.height(24.dp), style = MaterialTheme.typography.caption)
+        }
+        val style = if (isLink) {
+            MaterialTheme.typography.body1.copy(color = MaterialTheme.colors.primary)
+        } else {
+            MaterialTheme.typography.body1
+        }
+        Text(text = value, modifier = Modifier.height(24.dp), style = style)
     }
 }
 
