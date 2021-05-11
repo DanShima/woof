@@ -1,5 +1,6 @@
 package com.danshima.woof
 
+import android.widget.Toast
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.runtime.Composable
 import com.danshima.woof.models.Cat
@@ -17,6 +18,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.outlined.Call
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
@@ -46,6 +48,7 @@ fun showCat(cat: Cat) {
                     CatDescription(cat = cat, height = this@BoxWithConstraints.maxHeight)
                 }
             }
+            AddCatButton(Modifier.align(Alignment.BottomEnd))
         }
     }
 }
@@ -106,6 +109,23 @@ fun CatDetail(label: String, value: String, isLink: Boolean = false) {
             MaterialTheme.typography.body1
         }
         Text(text = value, modifier = Modifier.height(24.dp), style = style)
+    }
+}
+
+@Composable
+fun AddCatButton(modifier: Modifier = Modifier) {
+    FloatingActionButton(
+        onClick = {
+
+        },
+        modifier = modifier
+            .padding(16.dp)
+            .height(50.dp)
+            .widthIn(min = 50.dp),
+        backgroundColor = Color.Blue,
+        contentColor = Color.White
+    ) {
+        Icon(Icons.Filled.Add,"")
     }
 }
 
