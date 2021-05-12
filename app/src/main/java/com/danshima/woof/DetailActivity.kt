@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import com.danshima.woof.ui.theme.WoofTheme
-import androidx.compose.material.Text
 import com.danshima.woof.models.Cat
 
 class DetailActivity : AppCompatActivity() {
@@ -19,7 +18,7 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             WoofTheme {
-                Text("Test")
+                showCat(cat)
             }
         }
     }

@@ -25,7 +25,7 @@ fun CatListItem(cat: Cat, goToDetail:(Cat) -> Unit) {
             .padding(horizontal = 8.dp, vertical = 8.dp)
             .fillMaxWidth(),
         elevation = 4.dp,
-        backgroundColor = Color.LightGray,
+        backgroundColor = Color.White,
         shape = RoundedCornerShape(corner = CornerSize(16.dp))
     ) {
         Row(Modifier.clickable { goToDetail(cat) }) {
@@ -37,7 +37,7 @@ fun CatListItem(cat: Cat, goToDetail:(Cat) -> Unit) {
                     .align(Alignment.CenterVertically)
             ) {
                 Text(text = cat.name, style = MaterialTheme.typography.h6)
-                Text(text = "VIEW DETAIL", style = MaterialTheme.typography.caption)
+                Text(text = "See more...", style = MaterialTheme.typography.caption)
             }
         }
     }

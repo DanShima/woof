@@ -1,6 +1,5 @@
 package com.danshima.woof
 
-import android.widget.Toast
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.runtime.Composable
 import com.danshima.woof.models.Cat
@@ -19,11 +18,11 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.Call
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalDensity
@@ -33,6 +32,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.danshima.woof.ui.theme.PrimaryColor
+import com.danshima.woof.ui.theme.Purple500
 
 
 @Composable
@@ -48,7 +49,7 @@ fun showCat(cat: Cat) {
                     CatDescription(cat = cat, height = this@BoxWithConstraints.maxHeight)
                 }
             }
-            AddCatButton(Modifier.align(Alignment.BottomEnd))
+            AddCatButton(Modifier.align(Alignment.BottomEnd), isExtended = scrollState.value == 0)
         }
     }
 }
@@ -60,6 +61,7 @@ private fun CatHeader(
     height: Dp
 ) {
     val offset = (scrollState.value / 2)
+    // makes the image smaller when you scroll down
     val offsetDp = with(LocalDensity.current) {
         offset.toDp()
     }
@@ -69,7 +71,7 @@ private fun CatHeader(
             .fillMaxWidth()
             .padding(all = offsetDp),
         painter = painterResource(id = cat.imageId),
-        contentScale = ContentScale.Crop,
+        contentScale = ContentScale.Fit,
         contentDescription = "cat image"
     )
 }
@@ -113,7 +115,7 @@ fun CatDetail(label: String, value: String, isLink: Boolean = false) {
 }
 
 @Composable
-fun AddCatButton(modifier: Modifier = Modifier) {
+fun AddCatButton(modifier: Modifier = Modifier, isExtended: Boolean) {
     FloatingActionButton(
         onClick = {
 
@@ -122,10 +124,12 @@ fun AddCatButton(modifier: Modifier = Modifier) {
             .padding(16.dp)
             .height(50.dp)
             .widthIn(min = 50.dp),
-        backgroundColor = Color.Blue,
+        backgroundColor = PrimaryColor,
         contentColor = Color.White
     ) {
-        Icon(Icons.Filled.Add,"")
+        //Icon(Icons.Filled.Add,"")
+        AnimatedFab(icon = { Icon(imageVector = Icons.Outlined.Add, null) },
+            text = { Text(text = "Add more") }, isExtended = isExtended)
     }
 }
 

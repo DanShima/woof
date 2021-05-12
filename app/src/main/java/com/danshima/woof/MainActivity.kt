@@ -16,6 +16,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.remember
 import androidx.core.content.ContextCompat
 import com.danshima.woof.models.Cat
+import com.danshima.woof.ui.theme.BrightBeige
+import com.danshima.woof.ui.theme.PrimaryColor
 
 
 class MainActivity : ComponentActivity() {
@@ -43,7 +45,8 @@ class MainActivity : ComponentActivity() {
         Scaffold(
             content = {
                 CatList(goToDetail = navigateToDetail)
-            }
+            },
+            backgroundColor = BrightBeige
         )
     }
 
